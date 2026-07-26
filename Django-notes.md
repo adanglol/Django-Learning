@@ -15,11 +15,17 @@ To view dependencies : `pip list`
 After we have created our django project going to go over some of the files that were created
 
 manage.py - command line utility lets interact django project in many ways
+
 mysite/ - directory actual py package for project 
+
 mysite/__init__.py - empty file tells python this directory should be python package
+
 mysite/settings.py - settings/configuration for project
+
 mysite/urls.py - URL declarations for project; a "table of contents" of your Django-powered site
+
 mysite/wsgi.py - entry point for WSGI-compatible web servers to serve your project
+
 mysite/asgi.py - entry point for ASGI-compatible web servers to serve your project
 
 Lets run it locally : `python manage.py runserver`
