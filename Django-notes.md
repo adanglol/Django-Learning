@@ -164,4 +164,27 @@ The queries and api is all new but got good practice link to documenation
 https://docs.djangoproject.com/en/6.0/topics/db/queries/
 
 Stop here for today : admin
-https://docs.djangoproject.com/en/6.0/intro/tutorial02/
+
+Creating admin sites to manage project is tedious as fk 
+So django does that need run command get started good to note - need look into config it tho
+
+lets create a admin user 
+`python manage.py createsuperuser`
+
+After create user run server
+
+we will stop here went to admin site and logged in 
+after logged in able to edit some things comes from library django.contrib.auth - aut framework ship with django
+
+Thats begs to ask where is polls app? - not in admin app
+
+what need to do is tell admin that question objects have an admin interface. we do this by opening polls/admin.py 
+
+and edit code - look at file
+
+after doing so django knows now in admin site     
+You can edit and mess with it in site once registered
+
+meant for admins but need to consider differetn views for different people for lumora
+
+ON TO PART 3 but the models API not comfortable so will practice that b4 part 3 it is reccomended 
