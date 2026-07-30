@@ -188,3 +188,56 @@ You can edit and mess with it in site once registered
 meant for admins but need to consider differetn views for different people for lumora
 
 ON TO PART 3 but the models API not comfortable so will practice that b4 part 3 it is reccomended 
+
+
+## Part 2.5 Making Queries - Database API 
+article : https://docs.djangoproject.com/en/6.0/topics/db/queries/
+
+After models have been made django dives you db abstract api lets create update and delete (CRUD) - article helps us how use api 
+
+If interested in more documentation - https://docs.djangoproject.com/en/6.0/ref/models/
+
+Think we will hold off on 2.5 and go part 3 but will refer here if we want to use it
+
+## Part 3 - Views, Templates, and URLs
+
+A view type of web page in django app serves specific func and has specfic template 
+
+In poll application we have 4 views 
+
+Question "index" page - displays last few questions 
+
+Question "detail" page displays a question text with no results but with a form to vote 
+
+Question "results" page - display result for particular qquestion 
+
+vote action - handles voiting for particular choice in particular question
+
+Django helps with URLs makes them less ehh
+To get URL to view django use URLconfs - maps url patterns to view 
+
+Url pattern is form of url ex : /news/article/001
+
+documentation on url : https://docs.djangoproject.com/en/6.0/ref/models/
+
+refer to detail results and vote in polls/views.py
+
+Now that we have wrote our new views need to map them in our polls.urls at polls/urls.py 
+
+The urls look different because run detail() display what id in url 
+
+detail(request=HttpRequest object, question_id=34)
+
+the int question id is secoond param for function above
+
+ <int:question_id>
+
+<> represent part of url and send keyword arguemnt to view func 
+
+question_id part string defines name be used to identify match pattern 
+
+int converter determin what pattern match for this part url 
+
+: colon seperate converter and pattern name
+
+### Write views that do something 
