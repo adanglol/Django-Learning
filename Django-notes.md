@@ -241,3 +241,69 @@ int converter determin what pattern match for this part url
 : colon seperate converter and pattern name
 
 ### Write views that do something 
+Each view responsible for doing 2 things 
+- return HttpResponse object contain content for requested page 
+- Raising exception such as Http404 rest up you 
+
+View can read recods from db or not use template system or third party temlate system generate pdf do bunch of stuff with python library 
+
+Only thing matter is http response or exception is one of two results 
+
+In example of a view that does something using django db api 
+
+refer to index view in polls app
+
+problem with code is page design hard coded if want change need edit python code 
+
+django has template system to seperate design from python by create template that view can use
+
+stop here for today do templates and more of it tommorow and weekend
+
+
+need create folder in polls called templates polls/templates
+django looks from settings file where templates is at
+need create subdirectory polls iin there polls/templates/polls because django cant differentiate so its good practice to do so
+
+instead of doing loading template than loading context and returning it allows you to return template with shortcut function only thing is context render()
+
+The render() function takes the request object as its first argument, a template name as its second argument and a dictionary as its optional third argument. It returns an HttpResponse object of the given template rendered with the given context.
+
+
+### Raising a 404 Error
+refer to detail view in polls/views
+
+if question id no exist raises this error 
+
+
+Philosophy
+
+Why do we use a helper function get_object_or_404() instead of automatically catching the ObjectDoesNotExist exceptions at a higher level, or having the model API raise Http404 instead of ObjectDoesNotExist?
+
+Because that would couple the model layer to the view layer. One of the foremost design goals of Django is to maintain loose coupling. Some controlled coupling is introduced in the django.shortcuts module.
+
+There’s also a get_list_or_404() function, which works just as get_object_or_404() – except using filter() instead of get(). It raises Http404 if the list is empty.
+
+### Use the Template system
+
+polls/templates/polls/detail.html
+
+The template system uses dot-lookup syntax to access variable attributes. In the example of {{ question.question_text }}, first Django does a dictionary lookup on the object question. Failing that, it tries an attribute lookup – which works, in this case. If attribute lookup had failed, it would’ve tried a list-index lookup.
+
+Method-calling happens in the {% for %} loop: question.choice_set.all is interpreted as the Python code question.choice_set.all(), which returns an iterable of Choice objects and is suitable for use in the {% for %} tag.
+
+### Removing hard coded URLs in templates
+
+previous example in polls/index html no good becauses href hard coded 
+<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+
+we can use {% url %} tag instead refer polls index html
+
+Can even customize the path if want to as well specifics is custtom word added to url that is dynamic to note 
+path("specifics/int:question_id>/",views.detail,name="detail"),
+
+
+### Namespacing URL Names   
+
+The tutorial project has just one app, polls. In real Django projects, there might be five, ten, twenty apps or more. How does Django differentiate the URL names between them? For example, the polls app has a detail view, and so might an app on the same project that is for a blog. How does one make it so that Django knows which app view to create for a url when using the {% url %} template tag?
+
+The answer is to add namespaces to your URLconf. In the polls/urls.py file, go ahead and add an app_name to set the application namespace:
